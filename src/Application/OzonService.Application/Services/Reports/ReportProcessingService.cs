@@ -23,8 +23,10 @@ public class ReportProcessingService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Delay(1000, stoppingToken);
         while (!stoppingToken.IsCancellationRequested)
         {
+            await Task.Delay(100, stoppingToken);
             IAsyncEnumerable<ReportRequest> unprocessedReports = _reportService.GetUnprocessedAsync(stoppingToken);
 
             await foreach (ReportRequest reportEvent in unprocessedReports)

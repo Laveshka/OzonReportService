@@ -11,9 +11,9 @@ services:
     restart: unless-stopped
     networks:
       - report-processing-service-network
-  
+
   report-processing-service:
-    image: ghcr.io/laveshka/ozonreportservice:latest 
+    image: ghcr.io/laveshka/ozonreportservice:latest
     platform: linux/amd64
     container_name: report-processing-service
     networks:
@@ -29,7 +29,7 @@ services:
       Infrastructure__Persistence__Postgres__Username: postgres
       Infrastructure__Persistence__Postgres__Password: postgres
       Presentation__Kafka__Host: kafka:9092
-  
+
   zookeeper:
     image: wurstmeister/zookeeper:latest
     restart: unless-stopped
@@ -37,8 +37,8 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
     networks:
       - report-processing-service-network
-  
- kafka:
+
+  kafka:
     image: wurstmeister/kafka:latest
     restart: unless-stopped
     environment:
@@ -50,8 +50,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: EXTERNAL://127.0.0.1:8001,INTERNAL://kafka:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
       ALLOW_PLAINTEXT_LISTENER: yes
-      KAFKA_CREATE_TOPICS: >
-        report_processing:1:1,
+      KAFKA_CREATE_TOPICS: "report_processing:1:1"
     depends_on:
       - zookeeper
     networks:
@@ -63,8 +62,6 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    build:
-      context: .
     restart: unless-stopped
     depends_on:
       - kafka
@@ -73,18 +70,18 @@ services:
     ports:
       - "8003:8080"
     volumes:
-      -./src/Presentation/OzonService.Presentation.Kafka/protos:/schemas
+      - ./src/Presentation/OzonService.Presentation.Kafka/protos:/schemas
     environment:
       kafka.clusters.0.name: kafka
       kafka.clusters.0.bootstrapServers: kafka:9094
       kafka.clusters.0.defaultKeySerde: ProtobufFile
       kafka.clusters.0.defaultValueSerde: ProtobufFile
-      
+
       kafka.clusters.0.serde.0.name: ProtobufFile
       kafka.clusters.0.serde.0.properties.protobufFilesDir: /schemas/
-      
+
       kafka.clusters.0.serde.0.properties.protobufMessageNameForKeyByTopic.report_processing: reports.ReportRequestKey
-      
+
       kafka.clusters.0.serde.0.properties.protobufMessageNameByTopic.report_processing: reports.ReportRequestValue
 
 networks:

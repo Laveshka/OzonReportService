@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
             .AddConsumer(c => c
                 .WithKey<ReportRequestKey>()
                 .WithValue<ReportRequestValue>()
-                .WithConfiguration(configuration.GetSection($"{consumerKey}:ReportRequestEvent"))
+                .WithConfiguration(configuration.GetSection($"{consumerKey}:ReportProcessing"))
                 .DeserializeKeyWithProto()
                 .DeserializeValueWithProto()
                 .HandleWith<ReportRequestConsumer>()));
