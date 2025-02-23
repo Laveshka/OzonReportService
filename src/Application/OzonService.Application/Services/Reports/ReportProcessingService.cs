@@ -60,8 +60,6 @@ public class ReportProcessingService : BackgroundService
                     _logger.LogError(ex, "Error processing inbox event {RegistrationId}", reportEvent.RegistrationId);
                 }
             }
-
-            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
         }
     }
 }
