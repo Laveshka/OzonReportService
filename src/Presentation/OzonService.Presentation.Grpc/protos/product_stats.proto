@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package products;
+
+option csharp_namespace = "Products.Presentation.Grpc";
+
+import "google/protobuf/timestamp.proto";
+
+service ProductService {
+  rpc GetProductStats(ProductStatsRequest) returns (ProductStatsResponse);
+}
+
+message ProductStatsRequest {
+  int64 product_id = 1;
+  google.protobuf.Timestamp start_date = 2;
+  google.protobuf.Timestamp end_date = 3;
+}
+
+message ProductStatsResponse {
+  int64 total_purchase_count = 1;
+  int64 total_view_count = 2;
+}

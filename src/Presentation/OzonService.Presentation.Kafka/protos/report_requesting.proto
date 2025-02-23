@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package reports;
+
+option csharp_namespace = "Reports.Presentation.Kafka";
+
+import "google/protobuf/timestamp.proto";
+
+message ReportRequestKey{
+  int64 registration_id = 1;
+}
+
+message ReportRequestValue{
+  google.protobuf.Timestamp starting_at = 1;
+  google.protobuf.Timestamp ending_at = 2;
+  int64 product_id = 3;
+}

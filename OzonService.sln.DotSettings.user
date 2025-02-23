@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0f553422_002D36db_002D4fc4_002D8e3b_002D0d365e1b58a1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from ReportServiceTests.cs #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;ProjectFile&gt;C6167066-9B2A-4B07-A4E8-1A4312D979F0/f:ReportServiceTests.cs&lt;/ProjectFile&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5dd9699d_002D4efb_002D4ade_002D853a_002Df789299fc281/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from ReportServiceTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;ProjectFile&gt;C6167066-9B2A-4B07-A4E8-1A4312D979F0/f:ReportServiceTests.cs&lt;/ProjectFile&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fe11bc43_002D5cf9_002D4711_002D8176_002Dd1ef5ae98560/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ReportServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C6167066-9B2A-4B07-A4E8-1A4312D979F0::net8.0::ApplicationTests.ReportServiceTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

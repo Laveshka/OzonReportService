@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package reports;
+
+option csharp_namespace = "Reports.Presentation.Grpc";
+
+import "google/protobuf/timestamp.proto";
+
+service ReportService {
+  rpc GetReport(GetReportRequest) returns (GetReportResponse);
+}
+
+enum ReportStatus {
+  REPORT_STATUS_PROCESSING = 0;
+  REPORT_STATUS_COMPLETED = 1;
+}
+
+message GetReportRequest{
+  int64 registration_id = 1;
+}
+
+message GetReportResponse{
+  int64 registration_id = 1;
+  ReportStatus report_status = 2;
+  Report report = 3;
+}
+
+message Report{
+  Ratio ratio = 1;
+  int64 pay_count = 2;
+}
+
+message Ratio{
+  int64 units = 2;
+  // Number of nano (10^-9) units of the amount.
+  // The value must be between -999,999,999 and +999,999,999 inclusive.
+  // If `units` is positive, `nanos` must be positive or zero.
+  // If `units` is zero, `nanos` can be positive, zero, or negative.
+  // If `units` is negative, `nanos` must be negative or zero.
+  // For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+  int32 nanos = 3;
+}

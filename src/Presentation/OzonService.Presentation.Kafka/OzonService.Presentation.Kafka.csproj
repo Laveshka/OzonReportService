@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <PackageReference Include="Grpc.Tools"/>
+        <PackageReference Include="Itmo.Dev.Platform.Kafka"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="protos\*.proto" GrpcServices="None"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Application\OzonService.Application.Abstractions\OzonService.Application.Abstractions.csproj" />
+        <ProjectReference Include="..\..\Application\OzonService.Application.Contracts\OzonService.Application.Contracts.csproj"/>
+    </ItemGroup>
+
+</Project>
