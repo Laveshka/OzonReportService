@@ -7,28 +7,28 @@ WORKDIR /src
 
 COPY ./*.props ./
 
-COPY ["src/OzonReportService/OzonReportService.csproj", "src/OzonReportService/"]
-COPY ["src/Application/OzonReportService.Application.Models/OzonReportService.Application.Models.csproj", "src/Application/OzonReportService.Application.Models/"]
-COPY ["src/Presentation/OzonReportService.Presentation.Kafka/OzonReportService.Presentation.Kafka.csproj", "src/Presentation/OzonReportService.Presentation.Kafka/"]
-COPY ["src/Application/OzonReportService.Application.Contracts/OzonReportService.Application.Contracts.csproj", "src/Application/OzonReportService.Application.Contracts/"]
-COPY ["src/Application/OzonReportService.Application.Abstractions/OzonReportService.Application.Abstractions.csproj", "src/Application/OzonReportService.Application.Abstractions/"]
-COPY ["src/Application/OzonReportService.Application/OzonReportService.Application.csproj", "src/Application/OzonReportService.Application/"]
-COPY ["src/Infrastructure/OzonReportService.Infrastructure.Persistence/OzonReportService.Infrastructure.Persistence.csproj", "src/Infrastructure/OzonReportService.Infrastructure.Persistence/"]
+COPY ["src/OzonService/OzonService.csproj", "src/OzonService/"]
+COPY ["src/Application/OzonService.Application.Models/OzonService.Application.Models.csproj", "src/Application/OzonService.Application.Models/"]
+COPY ["src/Presentation/OzonService.Presentation.Kafka/OzonService.Presentation.Kafka.csproj", "src/Presentation/OzonService.Presentation.Kafka/"]
+COPY ["src/Application/OzonService.Application.Contracts/OzonService.Application.Contracts.csproj", "src/Application/OzonService.Application.Contracts/"]
+COPY ["src/Application/OzonService.Application.Abstractions/OzonService.Application.Abstractions.csproj", "src/Application/OzonService.Application.Abstractions/"]
+COPY ["src/Application/OzonService.Application/OzonService.Application.csproj", "src/Application/OzonService.Application/"]
+COPY ["src/Infrastructure/OzonService.Infrastructure.Persistence/OzonService.Infrastructure.Persistence.csproj", "src/Infrastructure/OzonService.Infrastructure.Persistence/"]
 
-RUN dotnet restore "src/OzonReportService/OzonReportService.csproj"
+RUN dotnet restore "src/OzonService/OzonService.csproj"
 
 COPY . .
-WORKDIR "/src/src/OzonReportService"
-RUN dotnet build "OzonReportService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/OzonService"
+RUN dotnet build "OzonService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "OzonReportService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "OzonService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 
 COPY --from=publish /app/publish .
 
-ENTRYPOINT ["dotnet", "OzonReportService.dll"]
+ENTRYPOINT ["dotnet", "OzonService.dll"]
 
