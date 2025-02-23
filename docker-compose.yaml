@@ -13,7 +13,7 @@ services:
       - report-processing-service-network
   
   report-processing-service:
-    image: ghcr.io/is-csms-y26/lab-5-tools:master
+    image: ghcr.io/laveshka/ozonreportservice:latest 
     platform: linux/amd64
     container_name: report-processing-service
     networks:
